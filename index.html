@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마음이 - 기억돌봄</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <button class="icon-btn" id="menuBtn" aria-label="메뉴">☰</button>
+      <div class="clock" id="clock">현재시각 : 불러오는 중</div>
+      <button class="icon-btn" id="settingsBtn" aria-label="설정">⚙</button>
+    </header>
+
+    <section class="home" id="home">
+      <div class="character-area">
+        <div class="character-wrap">
+          <img id="mainCharacter" class="character" src="assets/girl.png" alt="마음이 캐릭터">
+          <button class="history-bubble" id="historyBtn">
+            <span>!</span> 대화기록 보기
+          </button>
+        </div>
+      </div>
+
+      <div class="voice-area">
+        <button class="mic-btn" id="micBtn" aria-label="말하기">
+          <span class="mic-icon">🎙</span>
+        </button>
+        <div class="voice-status" id="voiceStatus">마음이에게 편하게 말씀해 주세요.</div>
+      </div>
+
+      <div class="quick-row">
+        <button class="quick-call child" id="childCallBtn">📞 자녀에게 전화</button>
+        <button class="quick-call emergency" id="emergencyBtn">119</button>
+      </div>
+    </section>
+
+    <section class="chat-page hidden" id="chatPage">
+      <div class="page-head">
+        <button class="back-btn" id="chatBackBtn">‹</button>
+        <div>
+          <strong>대화기록</strong>
+          <small id="chatCharacterName">마음이</small>
+        </div>
+        <button class="text-btn" id="clearChatBtn">기록 지우기</button>
+      </div>
+      <div class="character-tabs" id="characterTabs">
+        <button class="char-tab active" data-character="girl">마음이</button>
+        <button class="char-tab" data-character="boy">도윤이</button>
+      </div>
+      <div class="chat-list" id="chatList"></div>
+    </section>
+
+    <section class="settings-page hidden" id="settingsPage">
+      <div class="page-head">
+        <button class="back-btn" id="settingsBackBtn">‹</button>
+        <div><strong>설정</strong><small>안전하고 편안하게 사용하세요</small></div>
+      </div>
+
+      <div class="settings-card">
+        <button class="setting-item" data-panel="personalPanel">
+          <span>👤</span><div><b>개인정보</b><small>사용자와 보호자 정보를 입력해요</small></div><span>›</span>
+        </button>
+        <button class="setting-item" data-panel="characterPanel">
+          <span>💬</span><div><b>대화 상대</b><small>대화할 캐릭터를 선택해요</small></div><span>›</span>
+        </button>
+        <button class="setting-item" data-panel="voicePanel">
+          <span>🔊</span><div><b>음성 설정</b><small>캐릭터가 답변을 읽어줘요</small></div><span>›</span>
+        </button>
+      </div>
+
+      <div class="subpanel hidden" id="personalPanel">
+        <h3>개인정보</h3>
+        <label>사용자 이름<input id="userName" placeholder="예: 김○○"></label>
+        <label>보호자 이름<input id="guardianName" placeholder="예: 김○○"></label>
+        <label>보호자(자녀) 전화번호<input id="guardianPhone" type="tel" placeholder="010-0000-0000"></label>
+        <button class="save-btn" id="savePersonalBtn">저장하기</button>
+        <p class="hint">입력한 정보는 이 브라우저의 로컬 저장소에 저장됩니다.</p>
+      </div>
+
+      <div class="subpanel hidden" id="characterPanel">
+        <h3>대화 상대 선택</h3>
+        <div class="character-choice">
+          <button class="choice-card selected" data-choice="girl"><img src="assets/girl.png"><b>마음이</b><small>따뜻하고 차분한 친구</small></button>
+          <button class="choice-card" data-choice="boy"><img src="assets/boy.png"><b>도윤이</b><small>편안하게 이야기하는 친구</small></button>
+        </div>
+      </div>
+
+      <div class="subpanel hidden" id="voicePanel">
+        <h3>음성 설정</h3>
+        <label class="switch-line"><span>캐릭터 답변 읽어주기</span><input type="checkbox" id="voiceToggle" checked><i></i></label>
+      </div>
+    </section>
+
+    <div class="drawer hidden" id="drawer">
+      <button id="drawerClose">×</button>
+      <h2>마음이</h2>
+      <button id="drawerHistory">💬 오늘의 대화기록</button>
+      <button id="drawerSettings">⚙ 설정</button>
+      <p>편하게 이야기해 주세요.<br>작은 이야기라도 소중하게 기억할게요.</p>
+    </div>
+
+    <div class="modal hidden" id="emergencyModal">
+      <div class="modal-card">
+        <div class="modal-icon">☎</div>
+        <h2>119에 전화할까요?</h2>
+        <p>긴급한 상황인지 한 번 더 확인해 주세요.</p>
+        <div class="modal-actions">
+          <button id="cancelEmergency">취소</button>
+          <button class="danger" id="confirmEmergency">119 전화</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
